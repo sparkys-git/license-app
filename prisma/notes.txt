@@ -1,0 +1,45 @@
+API Key:
+   Key ID: cmbpo9ggp0000h57zepdp1pix
+   Key Name: Default API Key
+   Raw Key (use this in API calls): c5ab5049f65b9dc24614239c32e93cc141a83585b3fd6f9a9d159201f109e740
+
+👤 Admin User:
+   Username: admin
+   Password: admin123
+   User ID: cmbpo9goy0001h57zppa91166
+
+📱 Applications:
+   1. PhotoEditor Pro (Active)
+   2. CodeMaster IDE (Active)
+   3. DataAnalyzer Suite (Inactive)
+
+
+
+   1xx - Success
+├── 100 - License valid
+
+4xx - Client Errors  
+├── 400 - Invalid request (missing fields)
+├── 401 - Email mismatch
+├── 403 - License disabled by admin
+├── 404 - License not found
+
+5xx - License State Errors
+├── 500 - License expired
+├── 501 - License inactive  
+├── 502 - Application inactive
+
+9xx - System Errors
+├── 900 - Database/server error
+
+
+
+To be done later:
+
+need a new field in the Application table, type int. name: retrialwaitperiod. it will hold the number of days before an email (i.e user) 
+
+api to renew lic
+
+fav icon
+
+deployment
