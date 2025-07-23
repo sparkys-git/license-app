@@ -43,6 +43,7 @@ export default function AdminDashboard() {
   const [showCreateModal, setShowCreateModal] = useState(false)
   const [creating, setCreating] = useState(false)
   const [authenticated, setAuthenticated] = useState(false)
+  const [checkingAuth, setCheckingAuth] = useState(true)
   const [selectedLicenses, setSelectedLicenses] = useState<License[]>([])
   const [alertModal, setAlertModal] = useState({
     isOpen: false,
@@ -70,6 +71,8 @@ export default function AdminDashboard() {
       const response = await fetch(`/api/admin/licenses?${params}`)
       
       if (response.status === 401) {
+        setAuthenticated(false)
+        setCheckingAuth(false)
         router.push(getClientAdminUrl('login'))
         return
       }
@@ -81,9 +84,11 @@ export default function AdminDashboard() {
       setAuthenticated(true)
     } catch (error) {
       console.error('Error fetching licenses:', error)
+      setAuthenticated(false)
       router.push(getClientAdminUrl('login'))
     } finally {
       setLoading(false)
+      setCheckingAuth(false)
     }
   }
 
@@ -522,15 +527,18 @@ export default function AdminDashboard() {
     }
   }
 
-  if (!authenticated && loading) {
+  // Render loading spinner or nothing while checking authentication
+  if (checkingAuth) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
       </div>
     )
+  }
+
+  // If not authenticated, don't render admin content (router.push will handle redirect)
+  if (!authenticated) {
+    return null
   }
 
   return (
