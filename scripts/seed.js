@@ -1,3 +1,6 @@
+// Load environment variables from .env.local
+require('dotenv').config({ path: '.env.local' })
+
 const { PrismaClient } = require('@prisma/client')
 const crypto = require('crypto')
 const bcrypt = require('bcryptjs')
@@ -33,7 +36,7 @@ async function main() {
 
   // Check if admin user already exists
   let adminUser = await prisma.user.findUnique({
-    where: { username: 'admin' }
+    where: { username: 'jsparks' }
   })
 
   if (!adminUser) {
@@ -43,7 +46,7 @@ async function main() {
     
     adminUser = await prisma.user.create({
       data: {
-        username: 'admin',
+        username: 'jsparks',
         password: hashedPassword,
         isActive: true,
       },
@@ -90,7 +93,7 @@ async function main() {
   }
   
   console.log('\n👤 Admin User:')
-  console.log('   Username: admin')
+  console.log('   Username: jsparks')
   console.log('   Password: admin123')
   console.log('   User ID:', adminUser.id)
   

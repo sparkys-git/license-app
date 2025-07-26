@@ -44,8 +44,10 @@ ADMIN_PATH="your-custom-admin-path-here"
 ADMIN_SECRET_KEY="your-secret-key"
 ```
 
-#### Default Admin Credentials
-- **Username**: admin
+#### Admin Credentials
+
+After running the seed script, you'll have an admin user with the following credentials:
+- **Username**: jsparks
 - **Password**: admin123
 
 ⚠️ **Important**: Change the default admin password in production!
@@ -54,7 +56,7 @@ ADMIN_SECRET_KEY="your-secret-key"
 
 1. **Change Admin Path**: Use a unique, hard-to-guess admin path
 2. **Use HTTPS**: Always use HTTPS in production
-3. **Strong Passwords**: Change default admin credentials
+3. **Strong Passwords**: Change default admin credentials immediately after setup
 4. **Environment Variables**: Keep sensitive config in environment variables
 5. **Regular Rotation**: Rotate admin paths and credentials regularly
 

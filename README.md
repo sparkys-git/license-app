@@ -15,7 +15,7 @@ A comprehensive web application for creating and validating software licenses bu
 
 - **Frontend**: Next.js 14, React, TypeScript, Tailwind CSS
 - **Backend**: Next.js API Routes
-- **Database**: SQLite with Prisma ORM
+- **Database**: PostgreSQL with Prisma ORM
 - **Icons**: Lucide React
 
 ## Getting Started
@@ -35,12 +35,9 @@ A comprehensive web application for creating and validating software licenses bu
 2. **Set up environment variables**
    ```bash
    # Copy the example environment file
-   cp .env.local .env.local
+   cp .env.example .env.local
    
-   # Generate a secure API key
-   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-   
-   # Update .env.local with your values
+   # Update .env.local with your database connection and secrets
    ```
 
 3. **Set up the database**
@@ -52,10 +49,9 @@ A comprehensive web application for creating and validating software licenses bu
    npx prisma db push
    ```
 
-4. **Seed initial API key (optional)**
+4. **Seed the database (optional)**
    ```bash
-   # You can create API keys through the database or add this to a seed script
-   # We'll create one programmatically in the next step
+   npm run seed
    ```
 
 5. **Start the development server**
